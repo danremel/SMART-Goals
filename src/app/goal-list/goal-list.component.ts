@@ -13,7 +13,9 @@ export class GoalListComponent implements OnInit {
 
   myStorage = window.localStorage;
   
-  constructor() { }
+  constructor() { 
+    console.log(this.myStorage);
+  }
   
   ngOnInit() {
     var savedGoals= this.myStorage.getItem('app-goals');
@@ -21,8 +23,16 @@ export class GoalListComponent implements OnInit {
   }
   
   onCreateGoal() {
-    this.goals.push({ goalName: this.goalName, goalDate: this.goalDate});
-    this.myStorage.setItem('app-goals', JSON.stringify(this.goals))
+    this.goals.push({ 
+      goalName: this.goalName, 
+      goalDate: this.goalDate
+    });
+    this.myStorage.setItem('app-goals', JSON.stringify(this.goals));
     this.goalName = '', this.goalDate = '';
+  }
+
+  onRemoveGoal(index) {
+    this.goals.splice(index, 1);
+    this.myStorage.setItem('app-goals', JSON.stringify(this.goals));
   }
 }
