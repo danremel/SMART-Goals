@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goal-list.component.css']
 })
 export class GoalListComponent implements OnInit {
+  goalName: string = '';
+  goalDate: string = '';
 
+  goals = [];
+
+  
   constructor() { }
-
+  
   ngOnInit() {
   }
-
+  
+  onCreateGoal() {
+    this.goals.push({ goalName: this.goalName, goalDate: this.goalDate});
+    this.goalName = '', this.goalDate = '';
+  }
 }

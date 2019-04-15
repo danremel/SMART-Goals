@@ -1,5 +1,10 @@
-<p>
-  Goal-List
-</p>
+<div class="row">
+  <input type="text" [(ngModel)]="goalName" placeholder="Goal Name">
+  <input type="text" [(ngModel)]="goalDate" placeholder="Goal Date">
+  <button class="btn btn-primary" (click)="onCreateGoal()">Add Goal</button>
+</div>
 
-<app-goal-add></app-goal-add>
+<div *ngFor="let goal of goals">
+  <p>{{goal.goalName}}</p>
+  <p>Complete By: {{goal.goalDate}}</p>
+</div>
