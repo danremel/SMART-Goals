@@ -1,16 +1,11 @@
 <div class="row">
   <input type="text" [(ngModel)]="goalName" placeholder="Goal Name">
   <input type="text" [(ngModel)]="goalDate" placeholder="Goal Date">
-  <button class="btn btn-primary" (click)="onCreateGoal()" [disabled]="goalName === '' || goalDate === ''">Add Goal</button>
+  <button class="btn btn-primary btn-sm" (click)="onCreateGoal()" [disabled]="goalName === '' || goalDate === ''">Add Goal</button>
 </div>
 
 <div class="row goals-container">
   <div *ngFor="let goal of goals; let i = index" class="goal col-xs-4">
-    <div>
-      <p>{{i}}</p>
-      <p>{{goal.goalName}}</p>
-      <p>Complete By: {{goal.goalDate}}</p>
-      <button (click)="onRemoveGoal(i)" class="btn btn-danger">Remove</button>
-    </div>
+    <app-goal></app-goal>
   </div>
 </div>

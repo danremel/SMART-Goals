@@ -1,0 +1,20 @@
+<div>
+    <p>{{i}}</p>
+    <div>
+      <input type="text" *ngIf="editing" [(ngModel)]="goal.goalName">
+      <h4 *ngIf="!editing">{{goal.name}}</h4>
+    </div>
+    <div>
+      <input type="text" *ngIf="editing" [ngModel]="goal.goalDate">
+      <p *ngIf="!editing">Complete By: {{goal.dueDate}}</p>
+    </div>
+    <div>
+      <p>{{goal.description}}</p>
+    </div>
+    <button *ngIf="!editing" class="btn btn-warning btn-sm" (click)="onSelectGoal()">Edit</button>
+    <div class="btn-group btn-group-sm">
+      <button *ngIf="editing" class="btn btn-default" (click)="onCancelEdit()">Cancel</button>
+      <button *ngIf="editing" class="btn btn-success" (click)="onSaveGoal(i)">Save</button>
+    </div>
+    <button *ngIf="editing" class="btn btn-danger btn-sm pull-right" (click)="onRemoveGoal(i)">Remove</button>
+  </div>

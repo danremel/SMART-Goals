@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Goal } from './goal.model';
 
 @Component({
   selector: 'app-goal-list',
@@ -6,16 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goal-list.component.css']
 })
 export class GoalListComponent implements OnInit {
-  goalName: string = '';
-  goalDate: string = '';
 
-  goals = [];
+  goals: Goal[] = [
+    new Goal('Test Goal', 'This is the Goal Description', 'April 20, 2019')
+  ];
 
   myStorage = window.localStorage;
   
-  constructor() { 
-    console.log(this.myStorage);
-  }
+  constructor() { }
   
   ngOnInit() {
     var savedGoals= this.myStorage.getItem('app-goals');
@@ -23,16 +22,13 @@ export class GoalListComponent implements OnInit {
   }
   
   onCreateGoal() {
+
     this.goals.push({ 
-      goalName: this.goalName, 
-      goalDate: this.goalDate
+      name: this.name, 
+      dueDate: this.dueDate
     });
     this.myStorage.setItem('app-goals', JSON.stringify(this.goals));
-    this.goalName = '', this.goalDate = '';
+    this.name = '', this.dueDate = '';
   }
 
-  onRemoveGoal(index) {
-    this.goals.splice(index, 1);
-    this.myStorage.setItem('app-goals', JSON.stringify(this.goals));
-  }
 }
